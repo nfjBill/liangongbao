@@ -12,7 +12,7 @@ token_header = {
     "token": "",
     "memberId": "",
     "mobileTerminal": "0",
-    "appversion": "3.0.3",
+    "appversion": "3.0.4",
     "Content-Type": "application/x-www-form-urlencoded",
     "Host": "js.lgb360.com",
     "Connection": "Keep-Alive",
