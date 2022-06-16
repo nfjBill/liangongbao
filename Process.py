@@ -29,6 +29,8 @@ def right_answer(json_dict):
 
 
 def process():
+    num_ = 1
+    num_users = len(users.getUsers())
     for token_data in users.getUsers():
         login_url = 'https://js.lgb360.com/lgb/user/loginByPassword.do'
         ua_ = token_data.get('userAgent')
@@ -77,6 +79,9 @@ def process():
                 ques = data.get("ques")
                 if not ques:
                     print("答题结束")
+                    if num_ < num_users:
+                        print("处理下个用户")
+                        num_ += 1
                     break
                 else:
                     quesId = ques.get("quesId")
