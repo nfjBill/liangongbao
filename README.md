@@ -21,7 +21,7 @@ docker run \
     --restart=always \
     -e every_day="06:00" \
     -v /绝对路径/users.yaml:/users.yaml \
-    nfjbill/liangongbao:1.0
+    nfjbill/liangongbao:1.1
 ```
 
 ## 方法3：docker-compose
@@ -30,7 +30,7 @@ docker run \
 version: '3.1'
 services:
   lgb:
-    image: nfjbill/liangongbao:1.0
+    image: nfjbill/liangongbao:1.1
     container_name: lgb
     restart: always
     environment:

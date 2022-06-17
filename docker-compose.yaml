@@ -1,0 +1,11 @@
+version: '3.1'
+services:
+  lgb:
+    image: nfjbill/liangongbao:1.1
+    container_name: lgb
+    restart: always
+    environment:
+      - every_day=06:00
+#      - run_start=false # 是否启动运行，如果需要启动运行，注释本行
+    volumes:
+      - ./users.yaml:/users.yaml
