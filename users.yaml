@@ -1,9 +1,10 @@
 ---
 users:
-  - userName: 12123123
-    password: 12312312
-#  - userName: 123123
-#    password: adfasdf
-#  - userName: 123123
-#    password: adfasdf
-#    userAgent: LGB/3.0.4 (MIX 2; Android 9; zh_CN; 3b5b4609-8ff3-42ff-8e6a-478c28d6deef; 1519626260)
+  # 张三
+  - userName: 123123123
+    password: 121231231
+  # 李四
+  - userName: 123123123
+    password: 13123123
+    # 可选 userAgent
+    userAgent: LGB/3.0.4 (MIX 2; Android 9; zh_CN; 3b5b4609-8ff3-42ff-8e6a-478c28d6d1ef; 1119626260)

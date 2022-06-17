@@ -1,12 +1,16 @@
+# encoding: utf-8
+
 import requests
 import json
 import time
 import random
+from loguru import logger
 from Questions import Questions
 from Users import Users
 
 qb = Questions()
 users = Users()
+
 
 token_header = {
     "token": "",
@@ -35,12 +39,11 @@ def process():
         login_url = 'https://js.lgb360.com/lgb/user/loginByPassword.do'
         ua_ = token_data.get('userAgent')
         if ua_ is None:
-            ua_ = "Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) " \
-                  "Mobile/16A366 MicroMessenger/6.7.3(0x16070321) NetType/WIFI Language/zh_CN"
+            ua_ = "LGB/3.0.4 (MIX 2; Android 9; zh_CN; 3b5b4609-8ff3-42ff-8e6a-478c28d6d1ef; 1119626260)"
         token_header['User-Agent'] = ua_
         token_result = requests.post(login_url, headers=token_header, data=token_data)
         token_dict = json.loads(token_result.text)
-        print(token_dict)
+        logger.info(token_dict)
         status = token_dict.get("status")
         token_ = ''
         memberId_ = ''
@@ -68,7 +71,7 @@ def process():
         msg = result_dict.get("result").get("msg")
         code = result_dict.get("result").get("code")
         if msg == "每天只能挑战一次" and code == 9:
-            print("每天只能挑战一次")
+            logger.info("每天只能挑战一次")
             continue
 
         answerQues = "https://aqy-app.lgb360.com/aqy/ques/answerQues"
@@ -78,26 +81,26 @@ def process():
             if data:
                 ques = data.get("ques")
                 if not ques:
-                    print("答题结束")
+                    logger.info("答题结束")
                     if num_ < num_users:
-                        print("处理下个用户")
+                        logger.info("处理下个用户")
                         num_ += 1
                     break
                 else:
                     quesId = ques.get("quesId")
                     answerOptions = ques.get("options")
             else:
-                print("本用户处理结束 处理下个用户")
+                logger.info("本次处理结束")
                 break
             rightAnswer = right_answer(result_dict)
             if rightAnswer:
                 data = {"quesId": "%s" % quesId, "answerOptions": rightAnswer}
-                print("rightAnswer", data)
+                logger.info("rightAnswer", data)
             else:
                 data = {"quesId": "%s" % quesId, "answerOptions": ["%s" % answerOptions[0]]}
-                print(answerOptions[0])
+                logger.info(answerOptions[0])
             answer = requests.post(answerQues, headers=header, data=json.dumps(data))
-            print(answer.text)
+            logger.info(answer.text)
             result_dict = json.loads(answer.text)
             time.sleep(random.randint(6, 9))
         time.sleep(5)
