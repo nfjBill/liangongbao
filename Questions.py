@@ -10,8 +10,9 @@ class Questions:
     def initAnswers(self):
         with open(self.filename, encoding='utf-8', mode='r') as f:
             res = json.load(f)
-        for i in res:
-            self.answersDict[i['content']] = i['rightOptions']
+            self.answersDict = res
+        # for i in res:
+        #     self.answersDict[i['content']] = i['rightOptions']
 
     def getAnswer(self, question):
         answer = None

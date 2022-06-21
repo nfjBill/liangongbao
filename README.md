@@ -2,6 +2,8 @@
 
 # 自动化的链工宝答题
 
+题库不全，比较看脸
+
 ## 方法1
 
 1. git clone https://github.com/nfjBill/liangongbao.git
@@ -21,7 +23,7 @@ docker run \
     --restart=always \
     -e every_day="06:00" \
     -v /绝对路径/users.yaml:/users.yaml \
-    nfjbill/liangongbao:1.1
+    nfjbill/liangongbao:1.2
 ```
 
 ## 方法3：docker-compose
@@ -30,7 +32,7 @@ docker run \
 version: '3.1'
 services:
   lgb:
-    image: nfjbill/liangongbao:1.1
+    image: nfjbill/liangongbao:1.2
     container_name: lgb
     restart: always
     environment:
